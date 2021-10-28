@@ -38,31 +38,42 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            color: Colors.amber,
-            width: 100,
-            height: 100,
-          ),
-          SizedBox(
-            height: 200,
-          ),
-          Container(
-            color: Colors.yellow,
-            width: 100,
-            height: 100,
-          ),
-          SizedBox(
-            height: 50,
-          ),
-          Container(
-            color: Colors.grey,
-            width: 100,
-            height: 100,
-          ),
-        ],
+      appBar: AppBar(
+        title: Text('Image Widget'),
       ),
+      body: const Center(
+        child: Image(
+          image: AssetImage('assets/flower-01.png'),
+          width: 100,
+          height: 100,
+          fit: BoxFit.fill,
+        ),
+      ),
+      // body: Column(
+      //   children: [
+      //     Container(
+      //       color: Colors.amber,
+      //       width: 100,
+      //       height: 100,
+      //     ),
+      //     SizedBox(
+      //       height: 200,
+      //     ),
+      //     Container(
+      //       color: Colors.yellow,
+      //       width: 100,
+      //       height: 100,
+      //     ),
+      //     SizedBox(
+      //       height: 50,
+      //     ),
+      //     Container(
+      //       color: Colors.grey,
+      //       width: 100,
+      //       height: 100,
+      //     ),
+      //   ],
+      // ),
       // body: Stack(
       //   children: [
       //     Container(
