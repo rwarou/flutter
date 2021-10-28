@@ -39,16 +39,45 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Image Widget'),
+        title: const Text('Snack Bar'),
       ),
-      body: const Center(
-        child: Image(
-          image: AssetImage('assets/flower-01.png'),
-          width: 100,
-          height: 100,
-          fit: BoxFit.fill,
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('show Snackbar'),
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: const Text('Hello world'),
+                backgroundColor: Colors.teal,
+                duration: const Duration(milliseconds: 1000),
+                behavior: SnackBarBehavior.floating,
+                action: SnackBarAction(
+                  label: 'Undo',
+                  textColor: Colors.white,
+                  onPressed: () {},
+                ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: const BorderSide(
+                      color: Colors.red,
+                      width: 2,
+                    )),
+              ),
+            );
+          },
         ),
       ),
+      // appBar: AppBar(
+      //   title: Text('Image Widget'),
+      // ),
+      // body: const Center(
+      //   child: Image(
+      //     image: AssetImage('assets/flower-01.png'),
+      //     width: 100,
+      //     height: 100,
+      //     fit: BoxFit.fill,
+      //   ),
+      // ),
       // body: Column(
       //   children: [
       //     Container(
