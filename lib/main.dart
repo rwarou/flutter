@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'ScreenA.dart';
+import 'ScreenB.dart';
+import 'ScreenC.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +15,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'hot reloaded test'),
+      // home: MyHomePage(title: 'hot reloaded test'),
+      initialRoute: 'ScreenA',
+      routes: {
+        'ScreenA': (context) => ScreenA(),
+        'ScreenB': (context) => ScreenB(),
+        'ScreenC': (context) => ScreenC(),
+      },
     );
   }
 }
@@ -26,47 +35,82 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+class SecondScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Second Screen'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Home Screen'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+    );
   }
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  // int _counter = 0;
+
+  // void _incrementCounter() {
+  //   setState(() {
+  //     _counter++;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Snack Bar'),
+        title: const Text('Navigator'),
       ),
       body: Center(
         child: ElevatedButton(
-          child: const Text('show Snackbar'),
+          child: const Text('Second Screen'),
           onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: const Text('Hello world'),
-                backgroundColor: Colors.teal,
-                duration: const Duration(milliseconds: 1000),
-                behavior: SnackBarBehavior.floating,
-                action: SnackBarAction(
-                  label: 'Undo',
-                  textColor: Colors.white,
-                  onPressed: () {},
-                ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    side: const BorderSide(
-                      color: Colors.red,
-                      width: 2,
-                    )),
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => SecondScreen(),
               ),
             );
           },
         ),
       ),
+      // appBar: AppBar(
+      //   title: const Text('Snack Bar'),
+      // ),
+      // body: Center(
+      //   child: ElevatedButton(
+      //     child: const Text('show Snackbar'),
+      //     onPressed: () {
+      //       ScaffoldMessenger.of(context).showSnackBar(
+      //         SnackBar(
+      //           content: const Text('Hello world'),
+      //           backgroundColor: Colors.teal,
+      //           duration: const Duration(milliseconds: 1000),
+      //           behavior: SnackBarBehavior.floating,
+      //           action: SnackBarAction(
+      //             label: 'Undo',
+      //             textColor: Colors.white,
+      //             onPressed: () {},
+      //           ),
+      //           shape: RoundedRectangleBorder(
+      //               borderRadius: BorderRadius.circular(20),
+      //               side: const BorderSide(
+      //                 color: Colors.red,
+      //                 width: 2,
+      //               )),
+      //         ),
+      //       );
+      //     },
+      //   ),
+      // ),
       // appBar: AppBar(
       //   title: Text('Image Widget'),
       // ),
