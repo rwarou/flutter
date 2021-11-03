@@ -15,13 +15,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: MyHomePage(title: 'hot reloaded test'),
-      initialRoute: 'ScreenA',
-      routes: {
-        'ScreenA': (context) => ScreenA(),
-        'ScreenB': (context) => ScreenB(),
-        'ScreenC': (context) => ScreenC(),
-      },
+      home: MyHomePage(title: 'hot reloaded test'),
+      // initialRoute: 'ScreenA',
+      // routes: {
+      //   'ScreenA': (context) => ScreenA(),
+      //   'ScreenB': (context) => ScreenB(),
+      //   'ScreenC': (context) => ScreenC(),
+      // },
     );
   }
 }
@@ -35,24 +35,24 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class SecondScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Second Screen'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('Home Screen'),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-    );
-  }
-}
+// class SecondScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Second Screen'),
+//       ),
+//       body: Center(
+//         child: ElevatedButton(
+//           child: const Text('Home Screen'),
+//           onPressed: () {
+//             Navigator.pop(context);
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class _MyHomePageState extends State<MyHomePage> {
   // int _counter = 0;
@@ -67,21 +67,72 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Navigator'),
+        title: Text('Drawer'),
       ),
       body: Center(
-        child: ElevatedButton(
-          child: const Text('Second Screen'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => SecondScreen(),
+        child: Text('My Page !'),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            // DrawerHeader(
+            //   child: Text('DrawerHeader'),
+            //   decoration: BoxDecoration(
+            //     color: Colors.blue,
+            //   ),
+            // ),
+            UserAccountsDrawerHeader(
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.grey,
               ),
-            );
-          },
+              otherAccountsPictures: [
+                CircleAvatar(
+                  backgroundColor: Colors.blueGrey,
+                )
+              ],
+              accountName: Text('Rwarou'),
+              accountEmail: Text('rwarou.yim@gmail.com'),
+              onDetailsPressed: () {},
+              decoration: BoxDecoration(
+                color: Colors.blue[300],
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(40),
+                  bottomRight: Radius.circular(40),
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
         ),
       ),
+      // appBar: AppBar(
+      //   title: const Text('Navigator'),
+      // ),
+      // body: Center(
+      //   child: ElevatedButton(
+      //     child: const Text('Second Screen'),
+      //     onPressed: () {
+      //       Navigator.push(
+      //         context,
+      //         MaterialPageRoute(
+      //           builder: (_) => SecondScreen(),
+      //         ),
+      //       );
+      //     },
+      //   ),
+      // ),
       // appBar: AppBar(
       //   title: const Text('Snack Bar'),
       // ),
