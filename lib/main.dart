@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'ScreenA.dart';
 import 'ScreenB.dart';
 import 'ScreenC.dart';
 
-void main() {
+// void main() {
+//   runApp(MyApp());
+// }
+
+Future<void> main() async {
+  bool data = await fetchData();
+
   runApp(MyApp());
+}
+
+Future<bool> fetchData() async {
+  bool data = false;
+
+  await Future.delayed(Duration(seconds: 3), () {
+    data = true;
+  });
+
+  return data;
 }
 
 class MyApp extends StatelessWidget {
