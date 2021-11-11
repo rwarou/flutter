@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:my_app/providers/counts.dart';
-import 'package:my_app/widgets/buttons.dart';
-import 'package:my_app/widgets/counter.dart';
+import 'dart:math';
+// import 'package:provider/provider.dart';
+// import 'package:my_app/providers/counts.dart';
+// import 'package:my_app/widgets/buttons.dart';
+// import 'package:my_app/widgets/counter.dart';
 // import 'package:flutter/services.dart';
 // import 'ScreenA.dart';
 // import 'ScreenB.dart';
 // import 'ScreenC.dart';
 
 void main() {
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => Counts()),
-      ],
-      child: MyApp(),
-    ),
-  );
+  runApp(MyApp());
+
+  // provider
+  // runApp(
+  //   MultiProvider(
+  //     providers: [
+  //       ChangeNotifierProvider(create: (_) => Counts()),
+  //     ],
+  //     child: MyApp(),
+  //   ),
+  // );
 }
 
 // splash
@@ -95,24 +99,81 @@ class _MyHomePageState extends State<MyHomePage> {
   // TextEditingController inputController = TextEditingController();
   // String inputText = '';
 
+  // double _width = 0;
+  // double _height = 0;
+  // Color _color = Colors.green;
+  // double _borderRadius = 0;
+  bool _isVisible = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Provider'),
+        // title: Text('AnimatedContainer'),
+        title: Text('AnimatedOpacity'),
       ),
-      body: ChangeNotifierProvider(
-        create: (BuildContext context) => Counts(),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Counter(),
-              Buttons(),
-            ],
+      body: Center(
+        child: AnimatedOpacity(
+          opacity: _isVisible ? 1.0 : 0,
+          duration: Duration(seconds: 1),
+          child: Container(
+            width: 200,
+            height: 200,
+            color: Colors.green,
           ),
         ),
       ),
+      // body: Center(
+      //   child: AnimatedContainer(
+      //     duration: Duration(seconds: 1),
+      //     curve: Curves.fastOutSlowIn,
+      //     width: _width,
+      //     height: _height,
+      //     decoration: BoxDecoration(
+      //         color: _color,
+      //         borderRadius: BorderRadius.circular(_borderRadius)),
+      //   ),
+      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            _isVisible = !_isVisible;
+          });
+        },
+        child: Icon(Icons.play_arrow),
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     setState(() {
+      //       final random = Random();
+      //       _width = random.nextInt(300).toDouble();
+      //       _height = random.nextInt(300).toDouble();
+      //       _color = Color.fromRGBO(
+      //         random.nextInt(256),
+      //         random.nextInt(256),
+      //         random.nextInt(256),
+      //         1,
+      //       );
+      //       _borderRadius = random.nextInt(150).toDouble();
+      //     });
+      //   },
+      //   child: Icon(Icons.play_arrow),
+      // ),
+      // appBar: AppBar(
+      //   title: Text('Provider'),
+      // ),
+      // body: ChangeNotifierProvider(
+      //   create: (BuildContext context) => Counts(),
+      //   child: Center(
+      //     child: Column(
+      //       mainAxisAlignment: MainAxisAlignment.center,
+      //       children: [
+      //         Counter(),
+      //         Buttons(),
+      //       ],
+      //     ),
+      //   ),
+      // ),
       // appBar: AppBar(
       //   title: Text('TextField'),
       // ),
